@@ -19,7 +19,7 @@ echo "2. CHECK OK - Enviando OK_HEADER"
 echo "OK_HEADER" | nc localhost $PORT
 DATA=`nc -l $PORT`
 
-echo "4. COMPROBANDO PREFIJO"
+echo "5. COMPROBANDO PREFIJO"
 PREFIX=`echo "$DATA" | cut -d " " -f 1`
 if [ "$PREFIX" != "FILE_NAME" ]
 then
@@ -28,5 +28,6 @@ then
 	exit 2
 fi
 
+echo "6. ENVIANDO OK_FILE_NAME"
 echo "OK_FILE_NAME" | nc localhost $PORT
 

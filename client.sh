@@ -8,13 +8,15 @@ echo "1. ENVIO DE CABECERA"
 echo "DMAM" | nc localhost $PORT
 DATA=`nc -l $PORT`
 
+echo "3. COMPROBANDO HEADER"
 if [ "$DATA" != "OK_HEADER" ]
 then
 	echo "ERROR 1: El header se envió incorrectamente"
 	exit 1
 fi
 
-echo "3. CHECK OK - Enviando FILE_NAME"
+echo "4. CHECK OK - Enviando FILE_NAME"
+
 FILE_NAME="dragon.txt"
 echo "FILE_NAME $FILE_NAME" | nc localhost $PORT
 DATA=`nc -l $PORT`
@@ -25,4 +27,5 @@ then
 	exit 2
 fi
 
-echo "4. CHECK OK"
+echo "7. CHECK OK" 
+
