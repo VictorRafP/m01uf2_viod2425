@@ -15,6 +15,14 @@ then
 fi
 
 echo "3. CHECK OK - Enviando FILE_NAME"
-echo "FILE_NAME dragon.txt" | nc localhost $PORT
+FILE_NAME="dragon.txt"
+echo "FILE_NAME $FILE_NAME" | nc localhost $PORT
 DATA=`nc -l $PORT`
 
+if [ "$DATA" != "OK_FILE_NAME" ]
+then
+	echo "ERROR 2: El prefijo se envió incorrectamente"
+	exit 2
+fi
+
+echo "4. CHECK OK"

@@ -19,13 +19,14 @@ echo "2. CHECK OK - Enviando OK_HEADER"
 echo "OK_HEADER" | nc localhost $PORT
 DATA=`nc -l $PORT`
 
-DATA_ARCHIVO=`echo "$DATA" | cut -d " " -f 1`
-if [ "$DATA_ARCHIVO" != "FILE_NAME" ]
+echo "4. COMPROBANDO PREFIJO"
+PREFIX=`echo "$DATA" | cut -d " " -f 1`
+if [ "$PREFIX" != "FILE_NAME" ]
 then
-	echo "ERROR 2: Nombre de archivo incorrecto"
+	echo "ERROR 2: Prefijo  incorrecto"
 	echo "KO_FILE_NAME" | nc localhost $PORT
 	exit 2
 fi
 
-echo "4. CHECK OK"
+echo "OK_FILE_NAME" | nc localhost $PORT
 
