@@ -27,5 +27,18 @@ then
 	exit 2
 fi
 
-echo "7. CHECK OK" 
+echo "7. CHECK OK - Enviando contenido del archivo"
+cat client/$FILE_NAME | nc localhost $PORT
+DATA=`nc -l $PORT`
+
+echo "10. COMPROBANDO RESPUESTA"
+if [ "$DATA" != "OK_DATA" ]
+then
+	echo "ERROR 3: Los datos se enviarón incorrectamente"
+ 	exit 3
+fi
+
+echo "11. ENVIANDO MD5"
+
+echo "14. FIN"
 

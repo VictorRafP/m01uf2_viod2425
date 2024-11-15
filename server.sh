@@ -30,4 +30,23 @@ fi
 
 echo "6. ENVIANDO OK_FILE_NAME"
 echo "OK_FILE_NAME" | nc localhost $PORT
+DATA=`nc -l $PORT`
 
+
+echo "8. RECIBIENDO Y ALMACENANDO DATOS"
+if [ "$DATA" == "" ]
+then
+	echo "ERROR 3: Datos incorrectos"
+	echo "KO_DATA" | nc localhost $PORT
+	exit 3
+fi
+
+echo "$DATA" > server/dragon.txt
+
+echo "9. CHECK Y RESPUESTA"
+echo "OK_DATA"| nc localhost $PORT
+DATA=`nc -l $PORT`
+
+echo "12. RECIBIENDO MD5"
+
+echo "13. CHECK MD5 - ENVIANDO FIN"
