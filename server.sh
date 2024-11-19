@@ -21,6 +21,8 @@ DATA=`nc -l $PORT`
 
 echo "5. COMPROBANDO PREFIJO"
 PREFIX=`echo "$DATA" | cut -d " " -f 1`
+NOMBRE_ARCHIVO=`echo "$DATA" | cut -d " " -f 2`
+
 if [ "$PREFIX" != "FILE_NAME" ]
 then
 	echo "ERROR 2: Prefijo  incorrecto"
@@ -50,3 +52,4 @@ DATA=`nc -l $PORT`
 echo "12. RECIBIENDO MD5"
 
 echo "13. CHECK MD5 - ENVIANDO FIN"
+
