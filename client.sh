@@ -39,6 +39,7 @@ then
 fi
 
 echo "11. ENVIANDO MD5"
+echo "FILE_MD5 MD5SUM" | nc localhost $PORT
+DATA=`nc -l $PORT`
 
 echo "14. FIN"
-

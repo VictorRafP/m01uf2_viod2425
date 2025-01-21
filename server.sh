@@ -1,4 +1,4 @@
-#o "FILE_NAMEi/bin/bash
+#0 "FILE_NAMEi/bin/bash
 
 
 PORT="2022"
@@ -50,6 +50,15 @@ echo "OK_DATA"| nc localhost $PORT
 DATA=`nc -l $PORT`
 
 echo "12. RECIBIENDO MD5"
+PREFIX=`echo "$DATA" | cut -d " " -f 1`
+NOMBRE_ARCHIVO=`echo "$DATA" | cut -d " " -f 2`
 
-echo "13. CHECK MD5 - ENVIANDO FIN"
+echo "13. CHECK MD5 - ENVIANDO OK_FILE_MD5
+if [ "$PREFIX" != "FILE_MD5" ]
+then
+	echo "ERROR 4: Prefijo  incorrecto"
+	echo "KO_FILE_MD5" | nc localhost $PORT
+	exit 4
+fi
 
+echo "OK_FILE_MD5"| nc localhost $PORT
